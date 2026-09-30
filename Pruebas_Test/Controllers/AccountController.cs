@@ -24,15 +24,18 @@ namespace Pruebas_Test.Controllers
             {
                 return View(model);
             }
-            //Cambios funcionales
+
             // Validación de credenciales de prueba solicitadas: admin / 123
-            // esto es una pruebadafafda
-x|            if (model.Usuario == "admin" && model.Password == "123")
+            if (model.Usuario == "admin" && model.Password == "123")
             {
                 return Redirect("https://www.google.com");
             }
 
-            ModelState.AddModelError(string.Empty, "Usuario o contraseña incorrectos.");
+            ModelState.AddModelError(
+                string.Empty,
+                "Usuario o contraseña incorrectos."
+            );
+
             return View(model);
         }
     }
