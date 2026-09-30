@@ -12,7 +12,7 @@ namespace Pruebas_Test.Controllers
         }
 
         [HttpGet]
-    sfgsgfgsdg    public IActionResult Login()
+        public IActionResult Login()
         {
             return View(new LoginModel());
         }
