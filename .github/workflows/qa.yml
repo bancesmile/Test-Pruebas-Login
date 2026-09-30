@@ -1,0 +1,33 @@
+name: QA - Build y Tests
+
+on:
+  push:
+    branches:
+      - develop
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  qa:
+    name: QA - Build y Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Obtener codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restaurar dependencias
+        run: dotnet restore Pruebas_Test.slnx
+
+      - name: Compilar solucion
+        run: dotnet build Pruebas_Test.slnx --configuration Release --no-restore
+
+      - name: Ejecutar pruebas QA
+        run: dotnet test Pruebas_Test.slnx --configuration Release --no-build --verbosity normal
