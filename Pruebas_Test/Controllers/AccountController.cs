@@ -12,7 +12,7 @@ namespace Pruebas_Test.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login()
+    sfgsgfgsdg    public IActionResult Login()
         {
             return View(new LoginModel());
         }
@@ -24,14 +24,18 @@ namespace Pruebas_Test.Controllers
             {
                 return View(model);
             }
-
+dsffdsafdsfsdfsdfsdfdsfdsfs
             // Validación de credenciales de prueba solicitadas: admin / 123
             if (model.Usuario == "admin" && model.Password == "123")
             {
                 return Redirect("https://www.google.com");
             }
 
-            ModelState.AddModelError(string.Empty, "Usuario o contraseña incorrectos.");
+            ModelState.AddModelError(
+                string.Empty,
+                "Usuario o contraseña incorrectos."
+            );
+
             return View(model);
         }
     }
