@@ -24,10 +24,10 @@ namespace Pruebas_Test.Controllers
             {
                 return View(model);
             }
-
+            //Cambios funcionales
             // Validación de credenciales de prueba solicitadas: admin / 123
             // esto es una pruebadafafda
-x|            if (model.Usuario == "admin" adfadfssfsafsd&& model.Password == "123")
+x|            if (model.Usuario == "admin" && model.Password == "123")
             {
                 return Redirect("https://www.google.com");
             }
