@@ -25,7 +25,7 @@ namespace Pruebas_Test.Controllers
                 return View(model);
             }
 
-            // Validación de credenciales de prueba solicitadas: admin / 123
+            // Prueba funcional QA: credenciales correctas admin / 123
             if (model.Usuario == "admin" && model.Password == "123")
             {
                 return Redirect("https://www.google.com");
