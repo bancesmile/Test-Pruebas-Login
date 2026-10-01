@@ -1,13 +1,12 @@
-name: QA - Build y Tests
+name: QA - Build Tests y Deploy Main
 
 on:
   push:
     branches:
       - develop
 
-  pull_request:
-    branches:
-      - main
+permissions:
+  contents: write
 
 jobs:
   qa:
@@ -21,7 +20,7 @@ jobs:
       - name: Configurar .NET 10
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '10.0.x'
+          dotnet-version: "10.0.x"
 
       - name: Restaurar dependencias
         run: dotnet restore Pruebas_Test.slnx
@@ -31,3 +30,32 @@ jobs:
 
       - name: Ejecutar pruebas QA
         run: dotnet test Pruebas_Test.slnx --configuration Release --no-build --verbosity normal
+
+  actualizar-main:
+    name: Actualizar Main
+    needs: qa
+
+    if: ${{ success() }}
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Obtener repositorio
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configurar Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Actualizar main desde develop
+        run: |
+          git fetch origin
+          git checkout main
+          git merge origin/develop --no-ff -m "QA aprobado: integrar develop en main"
+          git push origin main

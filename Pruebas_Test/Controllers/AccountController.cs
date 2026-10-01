@@ -12,7 +12,7 @@ namespace Pruebas_Test.Controllers
         }
 
         [HttpGet]
-    sfgsgfgsdg    public IActionResult Login()
+        public IActionResult Login()
         {
             return View(new LoginModel());
         }
@@ -24,7 +24,7 @@ namespace Pruebas_Test.Controllers
             {
                 return View(model);
             }
-dsffdsafdsfsdfsdfsdfdsfdsfs
+
             // Validación de credenciales de prueba solicitadas: admin / 123
             if (model.Usuario == "admin" && model.Password == "123")
             {
